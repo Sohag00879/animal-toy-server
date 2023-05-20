@@ -42,7 +42,7 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/users", async (req, res) => {
+    app.post("/addToy", async (req, res) => {
       const user = req.body;
       console.log("new user", user);
       const result = await allToysCollection.insertOne(user);
@@ -54,6 +54,14 @@ async function run() {
       console.log("please delete from database", id);
       const query = { _id: new ObjectId(id) };
       const result = await allToysCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    // for update
+    app.get("/updateToys/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await allToysCollection.findOne(query);
       res.send(result);
     });
 
