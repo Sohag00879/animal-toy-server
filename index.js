@@ -65,6 +65,12 @@ async function run() {
       res.send(result);
     });
 
+    app.put("/updateToys/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedUser = req.body;
+      console.log(updatedUser);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
